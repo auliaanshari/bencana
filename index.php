@@ -611,11 +611,11 @@
 
           <!-- Nav Item - Pages Collapse Menu -->
           <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse35">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse36">
               <i class="fas fa-list"></i>
               <span>Berdasarkan Perkiraan Kerusakan Lingkungan</span>
             </a>
-            <div id="collapse35" class="collapse" data-parent="#collapseThe">
+            <div id="collapse36" class="collapse" data-parent="#collapseThe">
               <div class="bg-white py-2 collapse-inner rounded" >
               <select class="form-control" id="rusak" >
                 <option value="0 AND 1000">--1000 Juta Rupiah</option>
