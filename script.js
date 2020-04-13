@@ -816,6 +816,55 @@ function shelterTampil()
                   });
             }
 
+            function cariluas()
+            {
+              var luas=document.getElementById('luas').value;
+              $('#hasilcari1').show();
+              $('#hasilcari').empty();
+                hapusInfo();
+              //   clearroute2();
+              // clearroute();
+              // clearangkot();
+            hapusRadius();
+                hapusMarkerTerdekat();
+              //var kecamatan= kec.value;
+              $.ajax({
+                  url: server+'cariluas.php?luas='+luas, data: "", dataType: 'json', success: function(rows)
+                    {
+                      if(rows==null)
+                      {
+                        alert('Data Tidak Ditemukan');
+                      }
+                    for (var i in rows)
+                      {
+                        var row     = rows[i];
+                        var id   = row.id_bahaya;
+                        var nama   = row.nama_kecamatan;
+                        var bay   = row.nama_bahaya;
+                        var luas   = row.luas_bahaya;
+                        var latitude  = row.latitude ;
+                        var longitude = row.longitude ;
+                        centerBaru = new google.maps.LatLng(latitude, longitude);
+                        marker = new google.maps.Marker
+                      ({
+                        position: centerBaru,
+                        icon:'assets/ico/engineering.png',
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                      });
+                        console.log(latitude);
+                        console.log(longitude);
+                        markersDua.push(marker);
+                        map.setCenter(centerBaru);
+                  klikInfoWindow(id);
+                        map.setZoom(11);
+                        $('#hasilcari').append("<tr><td>"+nama+"</td><td>"+bay+"</td><td>"+luas+"</td></tr>");
+                      }
+          
+                    }
+                  });
+            }
+
             function tampilkelbahaya(){ 
               var ket = document.getElementById('keterangan1').value;
               var bay = document.getElementById('jenis_bahaya1').value;
@@ -1405,6 +1454,124 @@ function shelterTampil()
             
             }
 
+            function tampilkorbankej(){ 
+              var korban = document.getElementById('korban').value;
+              console.log(korban);
+              $('#hasilcari1').show();
+                  $('#hasilcari').empty();
+                  hapusInfo();
+                //   clearroute2();
+                // clearroute();
+              hapusRadius();
+                  hapusMarkerTerdekat();
+                        $.ajax({
+                        url: server+'carikorbankej.php?korban='+korban, data: "", dataType: 'json', success: function(rows)
+                        {
+            
+                    if(rows==null)
+                      {
+                        alert('Data Not Found !');
+            
+                      }
+                    else{
+                       for (var i in rows)
+                                {
+            
+                                  var row = rows[i];
+                                  var id   = row.id;
+                                  var tanggal_kejadian = row.tanggal_kejadian;
+                                  var korban = row.jumlah_korban_jiwa;
+                                  var nama   = row.nama_kecamatan;
+                                  var bay   = row.nama_bahaya;
+                                  var latitude  = row.latitude ;
+                                  var longitude = row.longitude ;
+                                    console.log(nama);
+            
+            
+                        centerBaru = new google.maps.LatLng(latitude, longitude);
+                          marker = new google.maps.Marker
+                        ({
+                          position: centerBaru,
+                          icon:'assets/ico/engineering.png',
+                          map: map,
+                          animation: google.maps.Animation.DROP,
+                        });
+                          console.log(latitude);
+                          console.log(longitude);
+                          markersDua.push(marker);
+                          map.setCenter(centerBaru);
+                          klikInfoWindow(id);
+                          map.setZoom(11);
+            
+                          $('#hasilcari').append("<tr><td>"+tanggal_kejadian+"</td><td>"+bay+"</td><td>"+nama+"</td><td>"+korban+"</td></tr>");
+                                    }
+            
+                    }
+                        }
+                     });
+                    }
+
+                    function tampilrusakkej(){ 
+                      var rusak = document.getElementById('rusak').value;
+                      console.log(rusak);
+                      $('#hasilcari1').show();
+                          $('#hasilcari').empty();
+                          hapusInfo();
+                        //   clearroute2();
+                        // clearroute();
+                      hapusRadius();
+                          hapusMarkerTerdekat();
+                                $.ajax({
+                                url: server+'carirusakkej.php?rusak='+rusak, data: "", dataType: 'json', success: function(rows)
+                                {
+                    
+                            if(rows==null)
+                              {
+                                alert('Data Not Found !');
+                    
+                              }
+                            else{
+                               for (var i in rows)
+                                        {
+                    
+                                          var row = rows[i];
+                                          var id   = row.id;
+                                          var tanggal_kejadian = row.tanggal_kejadian;
+                                          var rusak = row.perkiraan_kerusakan_lingkungan;
+                                          var nama   = row.nama_kecamatan;
+                                          var bay   = row.nama_bahaya;
+                                          var latitude  = row.latitude ;
+                                          var longitude = row.longitude ;
+                                            console.log(nama);
+                    
+                    
+                                centerBaru = new google.maps.LatLng(latitude, longitude);
+                                  marker = new google.maps.Marker
+                                ({
+                                  position: centerBaru,
+                                  icon:'assets/ico/engineering.png',
+                                  map: map,
+                                  animation: google.maps.Animation.DROP,
+                                });
+                                  console.log(latitude);
+                                  console.log(longitude);
+                                  markersDua.push(marker);
+                                  map.setCenter(centerBaru);
+                                  klikInfoWindow(id);
+                                  map.setZoom(11);
+                    
+                                  $('#hasilcari').append("<tr><td>"+tanggal_kejadian+"</td><td>"+bay+"</td><td>"+nama+"</td><td>"+rusak+"</td></tr>");
+                                            }
+                    
+                            }
+                                }
+                             });
+                            }
+
+
+            
+            
+
             function tampilwaktupen(){ 
               var bulan1 = document.getElementById('bulan1').value;
               var tahun1 = document.getElementById('tahun1').value;
@@ -1560,7 +1727,7 @@ function shelterTampil()
                           marker = new google.maps.Marker
                         ({
                           position: centerBaru,
-                          icon:'assets/ico/engineering.png',
+                          icon:'assets/ico/health-medical.png',
                           map: map,
                           animation: google.maps.Animation.DROP,
                         });
@@ -1630,6 +1797,122 @@ function shelterTampil()
                           map.setZoom(11);
             
                           $('#hasilcari').append("<tr><td>"+tanggal_penanggulangan+"</td><td>"+bay+"</td><td>"+nama+"</td><td>"+biaya+"</td></tr>");
+                                    }
+            
+                    }
+                        }
+                     });
+            
+            }
+
+            function tampillamapen(){ 
+              var lama = document.getElementById('lama').value;
+              console.log(lama);
+              $('#hasilcari1').show();
+                  $('#hasilcari').empty();
+                  hapusInfo();
+                //   clearroute2();
+                // clearroute();
+              hapusRadius();
+                  hapusMarkerTerdekat();
+                        $.ajax({
+                        url: server+'carilamapen.php?lama='+lama, data: "", dataType: 'json', success: function(rows)
+                        {
+            
+                    if(rows==null)
+                      {
+                        alert('Data Not Found !');
+            
+                      }
+                    else{
+                       for (var i in rows)
+                                {
+            
+                                  var row = rows[i];
+                                  var id   = row.id;
+                                  var tanggal_penanggulangan = row.tanggal_penanggulangan;
+                                  var lama = row.lama_penanggulangan;
+                                  var nama   = row.nama_kecamatan;
+                                  var bay   = row.nama_bahaya;
+                                  var latitude  = row.latitude ;
+                                  var longitude = row.longitude ;
+                                    console.log(nama);
+            
+            
+                        centerBaru = new google.maps.LatLng(latitude, longitude);
+                          marker = new google.maps.Marker
+                        ({
+                          position: centerBaru,
+                          icon:'assets/ico/health-medical.png',
+                          map: map,
+                          animation: google.maps.Animation.DROP,
+                        });
+                          console.log(latitude);
+                          console.log(longitude);
+                          markersDua.push(marker);
+                          map.setCenter(centerBaru);
+                          klikInfoWindow(id);
+                          map.setZoom(11);
+            
+                          $('#hasilcari').append("<tr><td>"+tanggal_penanggulangan+"</td><td>"+bay+"</td><td>"+nama+"</td><td>"+lama+"</td></tr>");
+                                    }
+            
+                    }
+                        }
+                     });
+            
+            }
+
+            function tampilbentukpen(){ 
+              var bentuk = document.getElementById('bentuk').value;
+              console.log(bentuk);
+              $('#hasilcari1').show();
+                  $('#hasilcari').empty();
+                  hapusInfo();
+                //   clearroute2();
+                // clearroute();
+              hapusRadius();
+                  hapusMarkerTerdekat();
+                        $.ajax({
+                        url: server+'caribentukpen.php?bentuk='+bentuk, data: "", dataType: 'json', success: function(rows)
+                        {
+            
+                    if(rows==null)
+                      {
+                        alert('Data Not Found !');
+            
+                      }
+                    else{
+                       for (var i in rows)
+                                {
+            
+                                    var row = rows[i];
+                                    var id   = row.id;
+                                    var tanggal_penanggulangan   = row.tanggal_penanggulangan;
+                                    var bentuk   = row.bentuk_penanggulangan;
+                                    var nama   = row.nama_kecamatan;
+                                    var bay   = row.nama_bahaya;
+                                    var latitude  = row.latitude ;
+                                    var longitude = row.longitude ;
+                                    console.log(nama);
+            
+            
+                        centerBaru = new google.maps.LatLng(latitude, longitude);
+                          marker = new google.maps.Marker
+                        ({
+                          position: centerBaru,
+                          icon:'assets/ico/health-medical.png',
+                          map: map,
+                          animation: google.maps.Animation.DROP,
+                        });
+                          console.log(latitude);
+                          console.log(longitude);
+                          markersDua.push(marker);
+                          map.setCenter(centerBaru);
+                    klikInfoWindow(id);
+                          map.setZoom(11);
+            
+                         $('#hasilcari').append("<tr><td>"+tanggal_penanggulangan+"</td><td>"+bentuk+"</td><td>"+nama+"</td><td>"+bay+"</td></tr>");
                                     }
             
                     }

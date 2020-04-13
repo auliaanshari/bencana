@@ -232,6 +232,25 @@
               </div>
             </div>
           </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7" >
+              <i class="fas fa-list"></i>
+              <span>Luas Bahaya</span>
+            </a>
+            <div id="collapse7" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="luas" >
+                <option value="0 AND 1000">1000 Hektare</option>
+                <option value="1001 AND 5000">1001 s/d 5000 Hektare</option>
+                <option value="5001 AND 20000">++5000 Hektare</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="cariluas"  value="cari" onclick="cariluas()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
       </ul>
       </div> 
       </li>
@@ -571,6 +590,44 @@
             </div>
           </li>
 
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse35">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Jumlah Korban Jiwa</span>
+            </a>
+            <div id="collapse35" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="korban" >
+                <option value="0 AND 99">--100 Jiwa</option>
+                <option value="100 AND 1000">100 s/d 1000 Jiwa</option>
+                <option value="1001 AND 2000">++1000 Jiwa</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkorbankej"  value="cari" onclick="tampilkorbankej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse35">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Perkiraan Kerusakan Lingkungan</span>
+            </a>
+            <div id="collapse35" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="rusak" >
+                <option value="0 AND 1000">--1000 Juta Rupiah</option>
+                <option value="1000 AND 5000">1000 s/d 5000 Juta Rupiah</option>
+                <option value="5000 AND 15000">++5000 Juta Rupiah</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilrusakkej"  value="cari" onclick="tampilrusakkej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
       </ul>
       </div> 
       </li>
@@ -688,6 +745,49 @@
                 </select>
                 <br>
                 <button type="submit" class="btn btn-default" id="tampilbiayapen"  value="cari" onclick="tampilbiayapen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse45">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Lama Penanggulangan</span>
+            </a>
+            <div id="collapse45" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="lama" >
+                <option value="0 AND 1">--2 Hari</option>
+                <option value="2 AND 4">2 s/d 4 hari</option>
+                <option value="5 AND 6">++5 Hari</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampillamapen"  value="cari" onclick="tampillamapen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse46">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Bentuk Penanggulangan</span>
+            </a>
+            <div id="collapse46" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="bentuk" >
+              <?php
+                include("connect.php"); 
+                $penanggulangan=pg_query("select * from penanggulangan ");
+                while($rowpenanggulangan = pg_fetch_assoc($penanggulangan))
+                {
+                echo"<option value=".$rowpenanggulangan['id_penanggulangan'].">".$rowpenanggulangan['bentuk_penanggulangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilbentukpen"  value="cari" onclick="tampilbentukpen()"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </li>
