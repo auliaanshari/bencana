@@ -53,86 +53,722 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Search by
-      </div>
+      <li class="nav-item active">
+      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOne" id="acc2">
+        <i class= "fas fa-search"></i>
+        <span>Search by</span><a>
+      <div id="collapseOne" class="collapse" data-parent="#acc2">
+      <ul class="nav-item"> 
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
+              <i class="fas fa-list"></i>
+              <span>Bahaya</span>
+            </a>
+            <div id="collapseTwo" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="bahaya" >
+                <?php
+                include("connect.php"); 
+                $bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowbahaya = pg_fetch_assoc($bahaya))
+                {
+                echo"<option value=".$rowbahaya['id_bahaya'].">".$rowbahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritpbahaya"  value="cari" onclick="caritpbahaya()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Nama</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
-      </li>
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" >
+              <i class="fas fa-list"></i>
+              <span>Kecamatan</span>
+            </a>
+            <div id="collapseThree" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="kecamatan" >
+                <?php
+                include("connect.php"); 
+                $kecamatan=pg_query("select * from kecamatan ");
+                while($rowkecamatan = pg_fetch_assoc($kecamatan))
+                {
+                echo"<option value=".$rowkecamatan['id_kecamatan'].">".$rowkecamatan['nama_kecamatan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritpkecamatan"  value="cari" onclick="caritpkecamatan()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2" >
+              <i class="fas fa-sort-alpha-asc"></i>
+              <span>Desa</span>
+            </a>
+            <div id="collapse2" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <input type="text" class="form-control" id="caridesa" name="caridesa" placeholder="Search..." >
+              <br>
+              <button type="submit" class="btn btn-default" value="caridesa" onclick="carinamadesa()"> <i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+          
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1">
+              <i class="fas fa-list"></i>
+              <span>Kelas</span>
+            </a>
+            <div id="collapse1" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="kelas" >
+                <?php
+                include("connect.php"); 
+                $kelas=pg_query("select * from kelas ");
+                while($rowkelas = pg_fetch_assoc($kelas))
+                {
+                echo"<option value=".$rowkelas['id_kelas'].">".$rowkelas['nama_kelas']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritpkelas"  value="cari" onclick="caritpkelas()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" >
+              <i class="fas fa-list"></i>
+              <span>Keterangan</span>
+            </a>
+            <div id="collapse3" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="keterangan" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritpketerangan"  value="cari" onclick="caritpketerangan()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" >
+              <i class="fas fa-sort-alpha-asc"></i>
+              <span>Shelter</span>
+            </a>
+            <div id="collapse4" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <input type="text" class="form-control" id="carishelter" name="carishelter" placeholder="Search..." >
+              <br>
+              <button type="submit" class="btn btn-default" value="carishelter" onclick="carinamashelter()"> <i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5">
+              <i class="fas fa-list"></i>
+              <span>Fasilitas Shelter</span>
+            </a>
+            <div id="collapse5" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="fasilitas" >
+                <?php
+                include("connect.php"); 
+                $fasilitas=pg_query("select * from fasilitas_shelter ");
+                while($rowfasilitas = pg_fetch_assoc($fasilitas))
+                {
+                echo"<option value=".$rowfasilitas['id_fasilitas'].">".$rowfasilitas['fasilitas']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritpfasilitas"  value="cari" onclick="caritpfasilitas()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse11" >
+              <i class="fas fa-list"></i>
+              <span>Penanggulangan</span>
+            </a>
+            <div id="collapse11" class="collapse" data-parent="#collapseOne">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="penanggulangan" >
+                <?php
+                include("connect.php"); 
+                $penanggulangan=pg_query("select * from penanggulangan ");
+                while($rowpenanggulangan = pg_fetch_assoc($penanggulangan))
+                {
+                echo"<option value=".$rowpenanggulangan['id_penanggulangan'].">".$rowpenanggulangan['bentuk_penanggulangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="caritppenanggulangan"  value="cari" onclick="caritppenanggulangan()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+      </ul>
+      </div> 
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      
+      <!-- Heading -->
+      <li class="nav-item active">
+      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOnee" id="acc2">
+        <i class= "fas fa-search"></i>
+        <span>Kajian Risiko Bencana</span><a>
+      <div id="collapseOnee" class="collapse" data-parent="#acc2">
+      <ul class="nav-item"> 
+
+      <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse21">
+              <i class="fas fa-list"></i>
+              <span>Kelas Bahaya</span>
+            </a>
+            <div id="collapse21" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya1" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan1" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelbahaya"  value="cari" onclick="tampilkelbahaya()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22">
+              <i class="fas fa-list"></i>
+              <span>Kelas Penduduk Terpapar</span>
+            </a>
+            <div id="collapse22" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya2" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan2" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelpenduduk"  value="cari" onclick="tampilkelpenduduk()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse23">
+              <i class="fas fa-list"></i>
+              <span>Kelas Kerugian</span>
+            </a>
+            <div id="collapse23" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya3" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan3" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelkerugian"  value="cari" onclick="tampilkelkerugian()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse24">
+              <i class="fas fa-list"></i>
+              <span>Kelas Kerusakan</span>
+            </a>
+            <div id="collapse24" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya4" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan4" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelkerusakan"  value="cari" onclick="tampilkelkerusakan()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse25">
+              <i class="fas fa-list"></i>
+              <span>Kelas Kapasitas</span>
+            </a>
+            <div id="collapse25" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya5" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan5" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelkapasitas"  value="cari" onclick="tampilkelkapasitas()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse26">
+              <i class="fas fa-list"></i>
+              <span>Kelas Risiko</span>
+            </a>
+            <div id="collapse26" class="collapse" data-parent="#collapseOnee">
+              <div class="bg-white py-2 collapse-inner rounded">
+              <select class="form-control" id="jenis_bahaya6" >
+                <?php
+                include("connect.php"); 
+                $jenis_bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowjenis_bahaya = pg_fetch_assoc($jenis_bahaya))
+                {
+                echo"<option value=".$rowjenis_bahaya['id_bahaya'].">".$rowjenis_bahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="keterangan6" >
+                <?php
+                include("connect.php"); 
+                $keterangan=pg_query("select * from keterangan ");
+                while($rowketerangan = pg_fetch_assoc($keterangan))
+                {
+                echo"<option value=".$rowketerangan['id_keterangan'].">".$rowketerangan['keterangan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkelrisiko"  value="cari" onclick="tampilkelrisiko()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+      </ul>
+      </div> 
+      </li>
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
+      <li class="nav-item active">
+      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseThe" id="acc2">
+        <i class= "fas fa-search"></i>
+        <span>Kejadian Bencana</span><a>
+      <div id="collapseThe" class="collapse" data-parent="#acc2">
+      <ul class="nav-item"> 
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse31">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Waktu</span>
+            </a>
+            <div id="collapse31" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="tahun" >
+                <?php
+                include("connect.php"); 
+                $tahun=pg_query("select distinct date_part('year', tanggal_kejadian) as tahun from kejadian_bencana order by tahun asc");
+                while($rowtahun = pg_fetch_assoc($tahun))
+                {
+                echo"<option value=".$rowtahun['tahun'].">".$rowtahun['tahun']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="bulan" >
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilwaktukej"  value="cari" onclick="tampilwaktukej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse32">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Bahaya</span>
+            </a>
+            <div id="collapse32" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="bahayaa" >
+                <?php
+                include("connect.php"); 
+                $bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowbahaya = pg_fetch_assoc($bahaya))
+                {
+                echo"<option value=".$rowbahaya['id_bahaya'].">".$rowbahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilbahayakej"  value="cari" onclick="tampilbahayakej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+         
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse33">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Kecamatan</span>
+            </a>
+            <div id="collapse33" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="kec1" >
+                <?php
+                include("connect.php"); 
+                $kecamatan=pg_query("select * from kecamatan ");
+                while($rowkecamatan = pg_fetch_assoc($kecamatan))
+                {
+                echo"<option value=".$rowkecamatan['id_kecamatan'].">".$rowkecamatan['nama_kecamatan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkeckej"  value="cari" onclick="tampilkeckej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse34">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Perkiraan Kerugian</span>
+            </a>
+            <div id="collapse34" class="collapse" data-parent="#collapseThe">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="rugi" >
+                <option value="1 AND 1000">--1000 Juta Rupiah</option>
+                <option value="1001 AND 5000">1001 s/d 5000 Juta Rupiah</option>
+                <option value="5001 AND 20000">++5000 Juta Rupiah</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilrugikej"  value="cari" onclick="tampilrugikej()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+      </ul>
+      </div> 
       </li>
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Heading -->
+      <li class="nav-item active">
+      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsefoo" id="acc2">
+        <i class= "fas fa-search"></i>
+        <span>Penanggulangan Bencana</span><a>
+      <div id="collapsefoo" class="collapse" data-parent="#acc2">
+      <ul class="nav-item"> 
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse41">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Waktu</span>
+            </a>
+            <div id="collapse41" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="tahun1">
+                <?php
+                include("connect.php"); 
+                $tahun=pg_query("select distinct date_part('year', tanggal_penanggulangan) as tahun from detail_penanggulangan order by tahun asc");
+                while($rowtahun = pg_fetch_assoc($tahun))
+                {
+                echo"<option value=".$rowtahun['tahun'].">".$rowtahun['tahun']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <select class="form-control" id="bulan1" >
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilwaktupen"  value="cari" onclick="tampilwaktupen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse42">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Bahaya</span>
+            </a>
+            <div id="collapse42" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="bahaya2" >
+                <?php
+                include("connect.php"); 
+                $bahaya=pg_query("select * from jenis_bahaya ");
+                while($rowbahaya = pg_fetch_assoc($bahaya))
+                {
+                echo"<option value=".$rowbahaya['id_bahaya'].">".$rowbahaya['nama_bahaya']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilbahayapen"  value="cari" onclick="tampilbahayapen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+         
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse43">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Kecamatan</span>
+            </a>
+            <div id="collapse43" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="kece1" >
+                <?php
+                include("connect.php"); 
+                $kecamatan=pg_query("select * from kecamatan ");
+                while($rowkecamatan = pg_fetch_assoc($kecamatan))
+                {
+                echo"<option value=".$rowkecamatan['id_kecamatan'].">".$rowkecamatan['nama_kecamatan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilkecpen"  value="cari" onclick="tampilkecpen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse44">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Biaya Penanggulangan</span>
+            </a>
+            <div id="collapse44" class="collapse" data-parent="#collapsefoo">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="biaya" >
+                <option value="0 AND 100">--100 Juta Rupiah</option>
+                <option value="101 AND 500">101 s/d 500 Juta Rupiah</option>
+                <option value="501 AND 1000">++500 Juta Rupiah</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilbiayapen"  value="cari" onclick="tampilbiayapen()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+      </ul>
+      </div> 
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      
+      <!-- Heading -->
+      <li class="nav-item active">
+      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsefii" id="acc2">
+        <i class= "fas fa-search"></i>
+        <span>Shelter</span><a>
+      <div id="collapsefii" class="collapse" data-parent="#acc2">
+      <ul class="nav-item"> 
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse51">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Kecamatan</span>
+            </a>
+            <div id="collapse51" class="collapse" data-parent="#collapsefii">
+            <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="keca1" >
+                <?php
+                include("connect.php"); 
+                $kecamatan=pg_query("select * from kecamatan ");
+                while($rowkecamatan = pg_fetch_assoc($kecamatan))
+                {
+                echo"<option value=".$rowkecamatan['id_kecamatan'].">".$rowkecamatan['nama_kecamatan']."</option>";
+                }
+                ?>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilshelkec"  value="cari" onclick="tampilshelkec()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse52">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Kapasitas</span>
+            </a>
+            <div id="collapse52" class="collapse" data-parent="#collapsefii">
+              <div class="bg-white py-2 collapse-inner rounded" >
+              <select class="form-control" id="kapasita" >
+                <option value="0 AND 3000">--3000 Jiwa</option>
+                <option value="3001 AND 4000">3001 s/d 4000 Jiwa</option>
+                <option value="4001 AND 6000">++4000 Jiwa</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-default" id="tampilshelkap"  value="cari" onclick="tampilshelkap()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+         
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse53" onclick="fasilitas()">
+              <i class="fas fa-list"></i>
+              <span>Berdasarkan Fasilitas</span>
+            </a>
+            <div id="collapse53" class="collapse" data-parent="#collapsefii">
+              <div class="box-body" id="fasilitaslist">
+                
+                <button type="submit" class="btn btn-default" id="carifasilitas"  value="fas" onclick="carifasilitas()"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </li>
+
+      </ul>
+      </div> 
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -158,7 +794,7 @@
           </button>
 
           
-          <div class="topbar-heading" style="color:black; font-weight:bold"> SISTEM INFORMASI GEOGRAFIS KAJIAN RESIKO BENCANA ALAM, KEJADIAN BENCANA DAN PENANGGULANGANNYA</div>
+          <div class="topbar-heading" style="color:black; font-weight:bold"> SISTEM INFORMASI GEOGRAFIS KAJIAN RISIKO BENCANA ALAM, KEJADIAN BENCANA DAN PENANGGULANGANNYA</div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -168,26 +804,6 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x600">
               </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
             </li>
 
           </ul>
@@ -202,7 +818,7 @@
           <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-7 col-lg-7">
               <div class="card shadow mb-4">
                 <!-- Card Header -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -213,23 +829,24 @@
                   <button class="btn btn-default" role="button" data-toggle="collapse" href="#terdekat" title="Nearby" aria-controls="terdekat"><i class="fa fa-road" style="color:black;"></i></button>
                   <button class="btn btn-default" role="button" data-toggle="collapse" onclick="tampilsemua();resultt()" title="All Shelter" aria-controls="terdekat"><i class="fa fa-map-pin" style="color:black;"></i></button>
 					        <button class="btn btn-default" role="button" id="showlegenda" data-toggle="collapse" onclick="legenda()" title="Legend"   ><i class="fa fa-eye" style="color:black;"></i></button>         
-                    <div class="collapse" id="terdekat">
+                  <div class="collapse" id="terdekat">
                     <div class="well">
                     <label><b>Radius&nbsp</b></label><label style="color:black" id="km"><b>0</b></label>&nbsp<label><b>m</b></label><br>
                     <input  type="range" onclick="cek();aktifkanRadius();resultt()" id="inputradiusmes" name="inputradiusmes" data-highlight="true" min="1" max="20" value="1" >
-                    </div></div>
-          </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div id="map" style="width: 100%;height: 500px; z-index:60">
+                  <div id="map" style="width: 100%;height: 400px; z-index:60">
                   </div>
                 </div>
               </div>
             </div>
       
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
+            <div class="col-xl-5 col-lg-5" id="result">
               <div class="card shadow mb-4">
                 <!-- Card Header -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -237,8 +854,6 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div id="result">
-                  </div>
                   <div class="box-body" style="max-height:400px;overflow:auto;">
                     <div class="form-group" id="hasilcari1" style="display:none;">
                       <table class="table table-bordered" id='hasilcari'>
@@ -248,125 +863,7 @@
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-lg-6 mb-4">
-
-              <!-- Illustrations -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
-                </div>
-              </div>
-
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
-              </div>
-
-            </div>
           </div>
 
         </div>
@@ -428,6 +925,17 @@
   <script src="assets/js/jquery.sparkline.js"></script>
   <script src="assets/js/common-scripts.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap-slider.js"></script>
+  
+  <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/date.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+	
+	<script type="text/javascript" src="assets/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+  <script src="assets/js/advanced-form-components.js"></script>  
   
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

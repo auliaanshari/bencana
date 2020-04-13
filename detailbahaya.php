@@ -1,13 +1,15 @@
 <?php
 require 'connect.php';
 $cari = $_GET["cari"];
-$querysearch ="select distinct shelter.id_shelter, shelter.nama_shelter, kapasitas_shelter, desa.nama_desa, kecamatan.nama_kecamatan,
-				ST_X(ST_Centroid(shelter.geom)) AS lng, ST_Y(ST_CENTROID(shelter.geom)) As lat from shelter 
+$querysearch ="select distinct shelter.id_shelter, shelter.nama_bahaya, kapasitas_bahaya, desa.nama_desa, kecamatan.nama_kecamatan,
+				ST_X(ST_Centroid(shelter.geom)) AS lng, ST_Y(ST_CENTROID(shelter.geom)) As lat from bahaya 
 				left join detail_shelter on detail_shelter.id_shelter=shelter.id_shelter 
 				join kajian_bencana on kajian_bencana.id_desa=detail_shelter.id_desa
 				join desa on kajian_bencana.id_desa=desa.id_desa
 				join kecamatan on kecamatan.id_kecamatan=desa.id_kecamatan where shelter.id_shelter='$cari'";
 $hasil=pg_query($querysearch);
+$dataarray = [];
+$data_fasilitas = [];
 while($row = pg_fetch_array($hasil))
 	{
 		  $id_shelter=$row['id_shelter'];
